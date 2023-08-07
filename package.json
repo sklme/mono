@@ -1,0 +1,22 @@
+{
+  "name": "wei18n",
+  "version": "1.0.0",
+  "description": "wei18n",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "installHooks": "sh scripts/applySimpleGitHooks.sh",
+    "dev": "pnpm -r --parallel --filter='./apps/*' run dev"
+  },
+  "author": "wrynnsun",
+  "devDependencies": {
+    "@types/node": "^20.4.8",
+    "commitizen": "^4.3.0",
+    "picocolors": "^1.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "core-js": "^3.23.4"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "*": ["prettier --write --cache --ignore-unknown"],
+  "apps/*/{src,types}/**/*.ts": ["eslint --cache --fix"]
+}
