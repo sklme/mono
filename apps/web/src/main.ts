@@ -3,8 +3,6 @@ import { router } from '~/router/router';
 import App from './App.vue';
 import pinia from '~/store';
 
-// md样式支持
-import '~/style/markdown.less';
 // 引入windicss
 import 'virtual:windi.css';
 
