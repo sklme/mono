@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "wei18n",
   "version": "1.0.0",
   "description": "wei18n",
@@ -12,7 +13,10 @@
   "devDependencies": {
     "@types/node": "^20.4.8",
     "commitizen": "^4.3.0",
-    "picocolors": "^1.0.0"
+    "lint-staged": "^13.2.3",
+    "picocolors": "^1.0.0",
+    "simple-git-hooks": "^2.9.0",
+    "tsx": "^3.8.0"
   },
   "pnpm": {
     "overrides": {
