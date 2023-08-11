@@ -10,11 +10,11 @@ export interface HttpResponse<T> {
   data: T;
 }
 
-export interface BaseHttpRequestParams {
+export interface BaseHttpRequest {
   token?: string;
-  id?: string;
+  userName?: string;
 }
 
-export interface HttpRequest<T> {
-  base: BaseHttpRequestParams;
-}
+// export interface HttpRequest<T> {
+//   base: BaseHttpRequest;
+// }
