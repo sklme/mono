@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
+// import HttpResponse from '@/shares/http/http';
+import { HttpResponse } from '@iskl/shares/types';
 
 /**
  * 通用的请求，包含
@@ -20,7 +22,7 @@ export class BaseService {
   }
 
   get<T>(config: AxiosRequestConfig) {
-    return this.axios.request<T>({
+    return this.axios.request<HttpResponse<T>>({
       method: 'GET',
       ...config,
     });
