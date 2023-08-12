@@ -1,0 +1,23 @@
+{
+  "name": "@iskl/shares",
+  "version": "1.0.0",
+  "description": "common monorepo share files",
+  "scripts": {
+    "prepare": "npm run build",
+    "dev": "tsup --watch",
+    "build": "tsup"
+  },
+  "exports": {
+    "./types": {
+      "import": "./dist/types/index.js",
+      "require": "./dist/types/index.js"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.js",
+      "require": "./dist/utils/index.js"
+    }
+  },
+  "devDependencies": {
+    "tsup": "^7.2.0"
+  }
+}
