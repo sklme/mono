@@ -20,10 +20,21 @@ export class BaseService {
       baseURL,
     });
 
-    // 个月axios增加一个错误处理的拦截器
+    // 请求结果的拦截器，用于错误处理
     this.axios.interceptors.response.use(
       (response) => {
         return response;
+      },
+      // (error) => {
+      //   // 错误处理
+      //   return Promise.reject(error);
+      // }
+    );
+
+    // 请求拦截器，用于添加token
+    this.axios.interceptors.request.use(
+      (config) => {
+        return config;
       },
       // (error) => {
       //   // 错误处理
