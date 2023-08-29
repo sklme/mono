@@ -40,6 +40,9 @@ export default defineConfig({
   ],
   server: {
     port: 8061,
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
   },
   resolve: {
     alias: {
