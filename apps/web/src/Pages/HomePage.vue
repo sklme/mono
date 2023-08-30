@@ -10,7 +10,7 @@ import BaseService from '~/service/base';
 const s = new BaseService();
 
 const x = s.post({
-  url: 'test',
+  url: 'error',
 });
 
 void x.then((d) => {

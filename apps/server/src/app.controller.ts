@@ -16,4 +16,9 @@ export class AppController {
       test: 1,
     };
   }
+
+  @Post('error')
+  error() {
+    throw new Error('test');
+  }
 }
