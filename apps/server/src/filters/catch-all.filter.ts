@@ -19,6 +19,11 @@ export class CatchAllExceptionFilter implements ExceptionFilter {
     const httpAdapter = this.httpAdapterHost.httpAdapter;
     const ctx = host.switchToHttp();
 
+    console.log(
+      '开始exception filter...',
+      httpAdapter.getRequestUrl(ctx.getRequest()),
+    );
+
     const httpStatus =
       exception instanceof HttpException
         ? exception.getStatus()
@@ -31,6 +36,11 @@ export class CatchAllExceptionFilter implements ExceptionFilter {
     };
 
     // 上报错误
+
+    console.log(
+      '结束exception filter...',
+      httpAdapter.getRequestUrl(ctx.getRequest()),
+    );
 
     httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
   }
