@@ -9,8 +9,11 @@ import BaseService from '~/service/base';
 
 const s = new BaseService();
 
-const x = s.post({
-  url: 'error',
+const x = s.get({
+  url: 'testPipe',
+  params: {
+    id: '122323',
+  },
 });
 
 void x.then((d) => {

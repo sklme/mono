@@ -1,5 +1,6 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+import { SimpleParseIntPipe } from 'src/pipes/parse-int.pipe';
 
 @Controller()
 export class AppController {
@@ -20,5 +21,13 @@ export class AppController {
   @Post('error')
   error() {
     throw new Error('test');
+  }
+
+  @Get('testPipe')
+  testPipe(@Query('id', SimpleParseIntPipe) id: number) {
+    //
+    return {
+      id,
+    };
   }
 }
