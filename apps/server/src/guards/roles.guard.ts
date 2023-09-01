@@ -19,15 +19,18 @@ export class RolesGuard implements CanActivate {
     console.log('开始guard...', path);
 
     if (!roles) {
+      console.log('结束guard...', path);
       return true;
     }
 
     const user = request.query.user as string;
 
     if (user && roles.includes(user)) {
+      console.log('结束guard...', path);
       return true;
     }
 
+    console.log('结束guard...', path);
     return false;
   }
 }
