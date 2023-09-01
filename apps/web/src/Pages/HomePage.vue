@@ -10,9 +10,9 @@ import BaseService from '~/service/base';
 const s = new BaseService();
 
 const x = s.get({
-  url: 'testPipe',
+  url: 'testGuard',
   params: {
-    id: '122323',
+    user: 'admin',
   },
 });
 

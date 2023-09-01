@@ -1,6 +1,8 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { SimpleParseIntPipe } from 'src/pipes/parse-int.pipe';
+import { Roles } from 'src/decorators/roles.decorator';
+import { RolesGuard } from 'src/guards/roles.guard';
 
 @Controller()
 export class AppController {
@@ -28,6 +30,16 @@ export class AppController {
     //
     return {
       id,
+    };
+  }
+
+  @Get('testGuard')
+  @Roles(['admin'])
+  @UseGuards(RolesGuard)
+  testGuard() {
+    return {
+      pass: true,
+      msg: '你通过了验证',
     };
   }
 }
