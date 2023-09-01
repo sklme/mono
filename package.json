@@ -7,7 +7,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "installHooks": "sh scripts/applySimpleGitHooks.sh",
-    "dev": "pnpm -r --parallel --filter='./apps/*' run dev"
+    "dev": "pnpm -r --parallel --filter='./apps/*' --filter='./packages/*' run dev"
   },
   "author": "wrynnsun",
   "devDependencies": {
