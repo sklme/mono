@@ -4,9 +4,11 @@
  * 包括请求参数，回包和错误码等错误
  */
 
+import { ErrCode } from './error';
+
 export interface HttpResponse<T> {
-  errCode: number;
-  errMsg: string;
+  code: ErrCode;
+  message: string;
   data: T;
 }
 

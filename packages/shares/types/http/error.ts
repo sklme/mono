@@ -3,5 +3,6 @@
  */
 
 export enum ErrCode {
-  default = -1,
+  commonErrCode = -1,
+  success = 0,
 }
