@@ -5,6 +5,7 @@
   "description": "wei18n",
   "main": "index.js",
   "scripts": {
+    "prepare": "npm run installHooks",
     "preinstall": "npx only-allow pnpm",
     "installHooks": "sh scripts/applySimpleGitHooks.sh",
     "dev": "pnpm -r --parallel --filter='./apps/*' --filter='./packages/*' run dev"
