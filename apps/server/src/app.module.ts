@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import databaseConfig from 'src/config/database.config';
 import tokenConfig from 'src/config/token.config';
 import baseConfig from 'src/config/base.config';
+import { LogModule } from 'src/modules/log/log.module';
 
 @Module({
   imports: [
@@ -18,10 +19,13 @@ import baseConfig from 'src/config/base.config';
       load: [baseConfig, databaseConfig, tokenConfig],
     }),
     // #endregion 配置
+    // #region 日志
+    LogModule.forRoot(),
+    // #endregion 日志
   ],
   controllers: [AppController],
   providers: [
-    // #region 全局操作
+    // #region 全局
     {
       provide: APP_FILTER,
       useClass: CatchAllExceptionFilter,
@@ -30,7 +34,7 @@ import baseConfig from 'src/config/base.config';
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,
     },
-    // #endregion 全局操作
+    // #endregion 全局
 
     AppService,
   ],

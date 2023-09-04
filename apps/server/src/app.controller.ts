@@ -4,12 +4,14 @@ import { SimpleParseIntPipe } from 'src/pipes/parse-int.pipe';
 import { Roles } from 'src/decorators/roles.decorator';
 import { RolesGuard } from 'src/guards/roles.guard';
 import { ConfigService } from '@nestjs/config';
+import { LogService } from 'src/modules/log/log.service';
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly configService: ConfigService,
+    private readonly logService: LogService,
   ) {}
 
   @Get()
@@ -41,19 +43,14 @@ export class AppController {
   @Roles(['admin'])
   @UseGuards(RolesGuard)
   testGuard() {
-    interface DatabaseConfig {
-      host: string;
-      port: number;
-    }
-    console.log(1212);
-    console.log(1212);
-    console.log(1212);
-    console.log(this.configService);
-    console.log(
-      this.configService.get<DatabaseConfig>('database.host', { infer: true }),
-    );
-    console.log(this.configService.get('NODE_ENV'));
-    console.log(process.env['database']);
+    this.logService.logger.info('testGuard', {
+      label: '我是最厉害的label',
+    });
+    this.logService.logger.error({
+      message: 'testGuard',
+      label: '123',
+    });
+
     return {
       pass: true,
       msg: '你通过了验证',
