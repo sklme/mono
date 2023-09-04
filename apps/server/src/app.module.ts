@@ -8,13 +8,14 @@ import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 import { ConfigModule } from '@nestjs/config';
 import databaseConfig from 'src/config/database.config';
 import tokenConfig from 'src/config/token.config';
+import baseConfig from 'src/config/base.config';
 
 @Module({
   imports: [
     // #region 配置
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [databaseConfig, tokenConfig],
+      load: [baseConfig, databaseConfig, tokenConfig],
     }),
     // #endregion 配置
   ],
