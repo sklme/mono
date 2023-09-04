@@ -4,11 +4,23 @@ import { LOG_MODULE_OPTIONS } from 'src/modules/log/constants';
 import { logModuleOptions } from 'src/modules/log/log.type';
 import { isDev } from 'src/utils/env';
 import { Logger, createLogger, format, transports } from 'winston';
-import * as DailyRotateFile from 'winston-daily-rotate-file';
+import DailyRotateFile from 'winston-daily-rotate-file';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+// 扩展
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 // 日志格式
 const logFormat = format.printf(({ level, message, label, timestamp }) => {
-  return `${timestamp} [${label || 'app'}] ${level}: ${message}`;
+  const ts = dayjs
+    .utc(timestamp)
+    .tz('Asia/Shanghai')
+    .format('YYYY-MM-DD HH:mm:ss.SSS');
+
+  return `${ts} [${label || 'app'}] ${level}: ${message}`;
 });
 
 // 通用日志记录参数
@@ -34,7 +46,7 @@ export class LogService {
     const _options: logModuleOptions = {
       logPath,
       errLogPath,
-      transferUTC8: true,
+      toUTC8: true,
       ...this.options,
     };
 
