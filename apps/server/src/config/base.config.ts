@@ -1,9 +1,12 @@
 import { isDev } from 'src/utils/env';
+import { homedir } from 'node:os';
 
+const appName = 'testApp';
 const devConfig = {
   // #region 日志路径
-  logPath: '~/logs/info',
-  errLogPath: '~/logs/err',
+  appName,
+  logPath: `${homedir()}/logs/${appName}/info`,
+  errLogPath: `${homedir()}/logs/${appName}/err`,
   // #endregion 日志路径
 };
 
