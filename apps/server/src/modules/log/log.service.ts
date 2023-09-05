@@ -3,7 +3,14 @@ import { ConfigService } from '@nestjs/config';
 import { LOG_MODULE_OPTIONS } from 'src/modules/log/constants';
 import { logModuleOptions } from 'src/modules/log/log.type';
 import { isDev } from 'src/utils/env';
-import { Logger, createLogger, format, transports } from 'winston';
+import {
+  LeveledLogMethod,
+  LogMethod,
+  Logger,
+  createLogger,
+  format,
+  transports,
+} from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -34,6 +41,15 @@ const dailyRotateFileTransportParams = {
 @Injectable()
 export class LogService {
   logger: Logger;
+
+  log: LogMethod;
+  error: LeveledLogMethod;
+  warn: LeveledLogMethod;
+  info: LeveledLogMethod;
+  debug: LeveledLogMethod;
+  http: LeveledLogMethod;
+  verbose: LeveledLogMethod;
+  silly: LeveledLogMethod;
 
   constructor(
     private readonly configService: ConfigService,
@@ -70,5 +86,28 @@ export class LogService {
     if (isDev) {
       this.logger.add(new transports.Console());
     }
+
+    // TODO 使用Proxy优化结构
+    this.log = this.logger.log.bind(this.logger);
+
+    this.error = this.logger.error.bind(this.logger);
+    this.warn = this.logger.warn.bind(this.logger);
+    this.info = this.logger.info.bind(this.logger);
+    this.http = this.logger.http.bind(this.logger);
+    this.verbose = this.logger.verbose.bind(this.logger);
+    this.debug = this.logger.debug.bind(this.logger);
+    this.silly = this.logger.silly.bind(this.logger);
+
+    // 代理所有的this.logger.xxx方法
+    // const logger = this.logger;
+    // this.logger = new Proxy(this.logger, {
+    //   get(target, propKey, receiver) {
+    //     const prop = Reflect.get(target, propKey, receiver);
+    //     if (typeof prop === 'function') {
+    //       return prop.bind(logger);
+    //     }
+    //     return prop;
+    //   },
+    // });
   }
 }

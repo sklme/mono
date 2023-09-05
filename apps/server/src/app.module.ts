@@ -10,6 +10,7 @@ import databaseConfig from 'src/config/database.config';
 import tokenConfig from 'src/config/token.config';
 import baseConfig from 'src/config/base.config';
 import { LogModule } from 'src/modules/log/log.module';
+import { LogInterceptor } from 'src/interceptors/log.interceptor';
 
 @Module({
   imports: [
@@ -29,6 +30,10 @@ import { LogModule } from 'src/modules/log/log.module';
     {
       provide: APP_FILTER,
       useClass: CatchAllExceptionFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LogInterceptor,
     },
     {
       provide: APP_INTERCEPTOR,
