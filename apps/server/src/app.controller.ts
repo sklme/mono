@@ -3,14 +3,12 @@ import { AppService } from './app.service';
 import { SimpleParseIntPipe } from 'src/pipes/parse-int.pipe';
 import { Roles } from 'src/decorators/roles.decorator';
 import { RolesGuard } from 'src/guards/roles.guard';
-import { ConfigService } from '@nestjs/config';
 import { LogService } from 'src/modules/log/log.service';
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private readonly configService: ConfigService,
     private readonly logService: LogService,
   ) {}
 
@@ -43,10 +41,10 @@ export class AppController {
   @Roles(['admin'])
   @UseGuards(RolesGuard)
   testGuard() {
-    this.logService.logger.info('testGuard', {
+    this.logService.info('testGuard', {
       label: '我是最厉害的label',
     });
-    this.logService.logger.error({
+    this.logService.error({
       message: 'testGuard',
       label: '123',
     });
