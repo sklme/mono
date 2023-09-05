@@ -36,6 +36,8 @@ export class CatchAllExceptionFilter implements ExceptionFilter {
     };
 
     // 上报错误
+    console.log(exception);
+    console.log(exception instanceof HttpException);
 
     console.log(
       '结束exception filter...',
