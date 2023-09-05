@@ -3,6 +3,7 @@ import { Roles } from 'src/decorators/roles.decorator';
 import { RolesGuard } from 'src/guards/roles.guard';
 import { SimpleParseIntPipe } from 'src/pipes/parse-int.pipe';
 import { AppService } from './app.service';
+import { LogicException } from '@iskl/shares/types';
 
 @Controller()
 export class AppController {
@@ -37,7 +38,7 @@ export class AppController {
   @Roles(['admin'])
   @UseGuards(RolesGuard)
   testGuard() {
-    throw new Error('123');
+    throw new LogicException(10001, '没有权限');
 
     return {
       pass: true,

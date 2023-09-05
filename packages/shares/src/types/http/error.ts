@@ -10,3 +10,15 @@ export enum ErrCode {
   // 参数错误
   paramErr = 10002,
 }
+
+export class LogicException extends Error {
+  name = 'LogicException';
+
+  constructor(
+    public readonly code: ErrCode,
+    public readonly message: string,
+    public readonly data?: Record<string, any>,
+  ) {
+    super(message);
+  }
+}

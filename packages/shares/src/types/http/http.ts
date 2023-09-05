@@ -6,7 +6,7 @@
 
 import { ErrCode } from './error';
 
-export interface HttpResponse<T> {
+export interface HttpResponse<T = Record<string, any>> {
   code: ErrCode;
   message: string;
   data: T;
