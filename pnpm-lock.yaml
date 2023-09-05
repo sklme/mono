@@ -32,7 +32,7 @@ importers:
   apps/server:
     dependencies:
       '@iskl/shares':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/shares
       '@nestjs/common':
         specifier: ^10.2.4
