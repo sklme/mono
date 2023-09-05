@@ -9,12 +9,24 @@
   },
   "exports": {
     "./types": {
-      "import": "./dist/types/index.js",
-      "require": "./dist/types/index.js"
+      "import": {
+        "types": "./dist/types/index.js",
+        "default": "./dist/types/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.js",
+        "default": "./dist/types/index.js"
+      }
     },
     "./utils": {
-      "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.js"
+      "import": {
+        "types": "./dist/utils/index.d.ts",
+        "default": "./dist/utils/index.mjs"
+      },
+      "require": {
+        "types": "./dist/utils/index.d.ts",
+        "default": "./dist/utils/index.js"
+      }
     }
   },
   "devDependencies": {
